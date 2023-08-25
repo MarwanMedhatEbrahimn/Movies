@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg bg-dark border-bottom" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">FIRST_TASK</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li *ngIf="isLogin" class="nav-item">
+            <a class="nav-link" [class.active]="currentpage=='home'" routerLink="/home">Home</a>
+          </li>
+          <li *ngIf="isLogin" class="nav-item">
+            <a class="nav-link" [class.active]="currentpage=='movies'||currentpage=='movie'" routerLink="/movies">Movies</a>
+          </li>
+          <li *ngIf="isLogin" class="nav-item">
+            <a class="nav-link" [class.active]="currentpage=='tv'" routerLink="/tv">Tv Shows</a>
+          </li>
+        </ul>
+        <div class="social-media">
+            <i class="fab mx-2 fa-instagram"></i>
+            <i class="fab mx-2 fa-spotify"></i>
+            <i class="fab mx-2 fa-facebook"></i>
+            <i class="fab mx-2 fa-youtube"></i>
+            <i class="fab mx-2 fa-soundcloud"></i>
+
+        </div>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="text" (keyup)="onkeySearch($event.target)" [value]="search"  placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" (click)="onSearch()">Search</button>
+        </form>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+            <li *ngIf="!isLogin" class="nav-item">
+              <a class="nav-link" routerLink="/login">Login</a>
+            </li>
+            <li *ngIf="!isLogin" class="nav-item">
+              <a class="nav-link" routerLink="/register">Register</a>
+            </li>
+            <li *ngIf="isLogin" class="nav-item">
+                <a class="nav-link" (click)="clickLogout()">Logout</a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </nav>

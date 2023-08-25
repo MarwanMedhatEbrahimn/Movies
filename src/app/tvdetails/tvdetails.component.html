@@ -1,0 +1,41 @@
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-4">
+            <img class="w-100" [src]="prefixImage+tvDetails?.poster_path" [alt]="tvDetails?.name">
+        </div>
+        <div class="col-md-8">
+            <h3>{{tvDetails?.name}}</h3>
+            <p class="py-2 sec_color mb-2">{{tvDetails?.tagline}}</p>
+            <div class="d-flex mb-3">
+                <div *ngFor="let genre of tvDetails?.genres" class="mx-2">
+                    <div  class="genres">
+                        {{genre.name}}
+                    </div>
+                </div>
+            </div>
+            <p class="sm">Vote : {{tvDetails?.vote_average}}</p>
+            <p class="sm">Vote Count : {{tvDetails?.vote_count}}</p>
+            <p class="sm">Popularity : {{tvDetails?.popularity}}</p>
+            <p class="py-2 sec_color">{{tvDetails?.overview}}</p>
+            <div class="">
+                <owl-carousel-o [options]="customOptions">
+                    <ng-container *ngFor="let season of tvDetails?.seasons">
+                      <ng-template carouselSlide [id]="season.id">
+                          <a [routerLink]="['/tv',tvDetails.id,tvDetails.name,season.season_number]">
+                            <div class="d-flex">
+                                <img class="w-25 me-3" [src]="prefixImage+season.poster_path" [alt]="season.name" [title]="season.name">
+                                <div class="sm">
+                                    <p>Name : {{season?.name|seasonName:tvDetails.name}}</p> 
+                                    <p>Season number : {{season?.season_number}}</p>
+                                    <p *ngIf="season?.air_date!==null">Realse date : {{season?.air_date}}</p>
+                                    <p>Vote : {{season?.vote_average}}</p>
+                                </div>
+                            </div>
+                          </a>
+                      </ng-template>
+                    </ng-container>
+                  </owl-carousel-o>
+            </div>
+        </div>
+    </div>
+</div>

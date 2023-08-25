@@ -1,0 +1,34 @@
+<div class="container">
+    <div *ngIf="Tvs.length>0 else NoResult">
+        <div class="row">
+            <div *ngFor="let tv of Tvs" class="col-md-3">
+                <div class="movie my-3">
+                    <a [routerLink]="['/tv',tv.id]">
+                        <div class="position-relative overflow-hidden">
+                            <img [src]="prefixImage+tv.poster_path" [alt]="tv.name" class="w-100">
+                            <div class="vote">{{tv.vote_average}}</div>
+                            <div class="overview p-2">
+                                <span>{{tv.overview|overviewSize:100}}</span>
+                            </div>
+                        </div>
+                        <h3 class="my-2 h6">{{tv.title}}</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+            <button *ngIf="pageNumber-2>1" class="btn btn-info me-1" (click)="changeNumberPage(1)">{{1}}</button>
+            <button *ngIf="pageNumber-3>1" class="btn btn-info me-1">...</button>
+            <div *ngFor="let btn of btns_pages" class="">
+                <button class="btn btn-info me-1" [disabled]="btn==pageNumber" (click)="changeNumberPage(btn)">{{btn}}</button>
+            </div>
+            <button *ngIf="pageNumber+3<btns_end" class="btn btn-info me-1">...</button>
+            <button class="btn btn-info me-1" [disabled]="btns_end==pageNumber" (click)="changeNumberPage(btns_end)">{{btns_end}}</button>
+
+        </div>
+    </div>
+    
+    <ng-template #NoResult>
+        <div class="h-100 text-center mt-5"><p class="py-5">NO RESULT</p></div>
+    </ng-template>
+</div>
