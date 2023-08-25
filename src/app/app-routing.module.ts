@@ -2,13 +2,10 @@ import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MoviesComponent } from './movies/movies.component';
-import { AboutComponent } from './about/about.component';
 import { TvComponent } from './tv/tv.component';
-import { NetworkComponent } from './network/network.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { PeopleComponent } from './people/people.component';
 import { authGuard } from './auth.guard';
 import { MoviedetailsComponent } from './moviedetails/moviedetails.component';
 import { TvdetailsComponent } from './tvdetails/tvdetails.component';
@@ -30,9 +27,6 @@ const routes: Routes = [
   {path:'tv/page/:Pnum/search/:search',canActivate:[authGuard],component:TvComponent},
   {path:'tv/page/:Pnum/search',redirectTo:"tv/page/:Pnum",pathMatch:"full"},
   {path:'tv/page',redirectTo:"tv",pathMatch:"full"},
-  {path:'people',canActivate:[authGuard],component:PeopleComponent},
-  {path:'network',canActivate:[authGuard],component:NetworkComponent},
-  {path:'about',canActivate:[authGuard],component:AboutComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'**',component:NotFoundComponent},
